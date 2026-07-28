@@ -2,36 +2,36 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 const memories = [
   {
-    image: "/photos/photo-1.jpeg",
+    image: `${import.meta.env.BASE_URL}photos/photo-1.jpeg`,
     message: "The day we met. I still can't believe I am this lucky. ♡",
   },
   {
-    image: "/photos/photo-2.jpeg",
+    image: `${import.meta.env.BASE_URL}photos/photo-2.jpeg`,
     message: "Every picture with you somehow becomes my favourite.",
   },
   {
-    image: "/photos/photo-3.jpeg",
+    image: `${import.meta.env.BASE_URL}photos/photo-3.jpeg`,
     message:
       "You looked so beautiful here that I forgot what I was trying to say.",
   },
   {
-    image: "/photos/photo-4.jpeg",
+    image: `${import.meta.env.BASE_URL}photos/photo-4.jpeg`,
     message: "A tiny moment, a lifetime memory.",
   },
   {
-    image: "/photos/photo-5.jpeg",
+    image: `${import.meta.env.BASE_URL}photos/photo-5.jpeg`,
     message: "You smiled and I forgot how to function.",
   },
   {
-    image: "/photos/photo-6.jpeg",
+    image: `${import.meta.env.BASE_URL}photos/photo-6.jpeg`,
     message: "If I could pause time, I'd choose this day.",
   },
   {
-    image: "/photos/photo-7.jpeg",
+    image: `${import.meta.env.BASE_URL}photos/photo-7.jpeg`,
     message: "My camera roll is basically your fan page.",
   },
   {
-    image: "/photos/photo-8.jpeg",
+    image: `${import.meta.env.BASE_URL}photos/photo-8.jpeg`,
     message: "And this is only the beginning of our story. ❤️",
   },
 ];
