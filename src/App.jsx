@@ -1,8 +1,20 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+// Write a different message for each photo here. You can make any one as long or short as you like.
+const messages = [
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
+]
+
 const memories = Array.from({ length: 8 }, (_, index) => ({
   id: index + 1,
-  caption: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. A tiny placeholder for a sweet memory. ♡',
+  message: messages[index],
   // Replace with /photos/photo-1.jpg (and so on) after adding your photos to public/photos.
   image: `https://images.unsplash.com/photo-${[
     '1516589178581-6cd7833ae3b2', '1518199266791-5375a83190b7',
@@ -74,7 +86,7 @@ function PinScreen({ next, startMusic }) {
 
 function Gallery({ next }) {
   return <main className="screen gallery-screen"><Sparkles /><header className="page-heading"><p className="eyebrow">eight little reasons to smile</p><h1>Us, in snapshots</h1><p>Touch a memory to find its secret note ♡</p></header>
-    <div className="memory-grid">{memories.map((memory, index) => <article className={`memory memory-${index + 1}`} tabIndex="0" key={memory.id}><div className="polaroid-paper"><div className="photo-window"><img src={memory.image} alt={`Memory placeholder ${memory.id}`} /><i className="photo-glare" /></div><div className="polaroid-note"><span>memory no. {String(memory.id).padStart(2, '0')}</span><p>{memory.caption}</p></div></div></article>)}</div>
+    <div className="memory-grid">{memories.map((memory, index) => <article className={`memory memory-${index + 1}`} tabIndex="0" key={memory.id}><div className="polaroid-paper"><div className="photo-window"><img src={memory.image} alt={`Memory placeholder ${memory.id}`} /><i className="photo-glare" /></div><div className="polaroid-note"><p>{memory.message}</p></div></div></article>)}</div>
     <button className="primary-button gallery-next" onClick={next}>a little love letter <b>→</b></button>
   </main>
 }
