@@ -1,28 +1,17 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-// Write a different message for each photo here. You can make any one as long or short as you like.
-const messages = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ♡',
+// To add your photos: put 8 JPG files in public/photos and name them photo-1.jpg through photo-8.jpg.
+// Write the matching note beside each photo. You only need to edit the text inside the quotes.
+const memories = [
+  { image: '/photos/photo-1.jpg', message: 'Write your note for photo 1 here.' },
+  { image: '/photos/photo-2.jpg', message: 'Write your note for photo 2 here.' },
+  { image: '/photos/photo-3.jpg', message: 'Write your note for photo 3 here.' },
+  { image: '/photos/photo-4.jpg', message: 'Write your note for photo 4 here.' },
+  { image: '/photos/photo-5.jpg', message: 'Write your note for photo 5 here.' },
+  { image: '/photos/photo-6.jpg', message: 'Write your note for photo 6 here.' },
+  { image: '/photos/photo-7.jpg', message: 'Write your note for photo 7 here.' },
+  { image: '/photos/photo-8.jpg', message: 'Write your note for photo 8 here.' },
 ]
-
-const memories = Array.from({ length: 8 }, (_, index) => ({
-  id: index + 1,
-  message: messages[index],
-  // Replace with /photos/photo-1.jpg (and so on) after adding your photos to public/photos.
-  image: `https://images.unsplash.com/photo-${[
-    '1516589178581-6cd7833ae3b2', '1518199266791-5375a83190b7',
-    '1497366754035-f200968a6e72', '1516589091380-5d42b1b3a8d1',
-    '1518988246986-2a1c8c6fdda8', '1524504388940-b1c1722653e1',
-    '1487412720507-e7ab37603c6f', '1494790108377-be9c29b29330',
-  ][index]}?auto=format&fit=crop&w=900&q=80`,
-}))
 
 const heartWords = ['I love you', 'love you', 'forever', 'my heart', '<3']
 const heartPoints = []
@@ -85,8 +74,9 @@ function PinScreen({ next, startMusic }) {
 }
 
 function Gallery({ next }) {
+  const [openMemory, setOpenMemory] = useState(null)
   return <main className="screen gallery-screen"><Sparkles /><header className="page-heading"><p className="eyebrow">eight little reasons to smile</p><h1>Us, in snapshots</h1><p>Touch a memory to find its secret note ♡</p></header>
-    <div className="memory-grid">{memories.map((memory, index) => <article className={`memory memory-${index + 1}`} tabIndex="0" key={memory.id}><div className="polaroid-paper"><div className="photo-window"><img src={memory.image} alt={`Memory placeholder ${memory.id}`} /><i className="photo-glare" /></div><div className="polaroid-note"><p>{memory.message}</p></div></div></article>)}</div>
+    <div className="memory-grid">{memories.map((memory, index) => <article className={`memory memory-${index + 1} ${openMemory === index ? 'is-open' : ''}`} tabIndex="0" key={memory.image} onClick={() => setOpenMemory(openMemory === index ? null : index)}><div className="polaroid-paper"><div className="photo-window"><img src={memory.image} alt={`Memory ${index + 1}`} /><i className="photo-glare" /></div><div className="polaroid-note"><p>{memory.message}</p></div></div></article>)}</div>
     <button className="primary-button gallery-next" onClick={next}>a little love letter <b>→</b></button>
   </main>
 }
