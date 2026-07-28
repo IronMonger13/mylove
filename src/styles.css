@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Parisienne&display=swap");
 
 :root {
+    --page-scale: 0.9;
+}
+
+:root {
   font-family: "DM Mono", monospace;
   color: #7c3b59;
   background: #fff0f5;
@@ -76,7 +80,7 @@ button {
 }
 h1 {
   font:
-    normal clamp(44px, 8vw, 92px)/0.95 "DM Serif Display",
+    normal clamp(40px, 7vw, 84px)/0.95 "DM Serif Display",
     Georgia,
     serif;
   color: #a72758;
@@ -156,11 +160,13 @@ h1 {
   right: 17%;
 }
 .pin-screen {
-  justify-content: center;
-  text-align: center;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    padding-top: clamp(30px, 5vh, 60px);
 }
 .pin-card {
-  width: min(100%, 520px);
+  width: min(100%, 470px);
   padding: clamp(30px, 7vw, 70px);
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.85);
@@ -182,7 +188,7 @@ h1 {
   box-shadow: 0 7px 0 #f6c2d5;
 }
 .pin-card h1 {
-  font-size: clamp(40px, 7vw, 65px);
+  font-size: clamp(36px, 6vw, 58px);
 }
 .pin-card > p:not(.eyebrow) {
   margin: 18px 0 28px;
@@ -227,10 +233,10 @@ h1 {
 }
 .page-heading {
   max-width: 600px;
-  margin: 10px auto 30px;
+  margin: 6px auto 22px;
 }
 .page-heading h1 {
-  font-size: clamp(43px, 7vw, 72px);
+  font-size: clamp(40px, 6.5vw, 66px);
 }
 .page-heading > p:last-child {
   font:
@@ -240,7 +246,7 @@ h1 {
   color: #8d4a68;
 }
 .memory-grid {
-  width: min(100%, 1060px);
+  width: min(100%, calc(1060px * var(--page-scale)));
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(10px, 2vw, 21px);
@@ -335,7 +341,7 @@ h1 {
   transform: scale(0.9) rotate(-3deg);
 }
 .gallery-next {
-  margin-top: 42px;
+  margin-top: 30px;
 }
 .letter-screen {
   padding-bottom: clamp(45px, 8vw, 90px);
@@ -365,7 +371,7 @@ h1 {
 }
 .love-letter {
   position: relative;
-  width: min(100%, 730px);
+  width: min(100%, 670px);
   padding: clamp(28px, 6vw, 58px);
   background: #fffaf8;
   box-shadow:
@@ -387,7 +393,7 @@ h1 {
 .love-letter span,
 .love-letter em {
   font:
-    33px "Parisienne",
+    30px "Parisienne",
     cursive;
   color: #b6406c;
 }
@@ -546,13 +552,13 @@ h1 {
 .loading-intro {
   position: relative;
   z-index: 1;
-  width: min(560px, 92vw);
+  width: min(500px, 90vw);
   text-align: center;
 }
 .loading-intro h1 {
   color: #fff7fb;
   font:
-    900 clamp(42px, 11vw, 70px)/1 "DM Serif Display",
+    900 clamp(38px, 10vw, 64px)/1 "DM Serif Display",
     Georgia,
     serif;
   letter-spacing: -0.04em;
@@ -584,7 +590,7 @@ h1 {
   margin-top: 22px;
   border: 0;
   border-radius: 10px;
-  padding: 13px 24px;
+  padding: 11px 20px;
   color: #fff;
   background: linear-gradient(135deg, #ff2d75, #b8003d);
   box-shadow: 0 12px 38px rgba(255, 45, 117, 0.36);
@@ -652,7 +658,7 @@ h1 {
   transform: scale(1.1);
 }
 .keypad {
-  width: min(100%, 292px);
+  width: min(100%,265px);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
@@ -775,7 +781,7 @@ h1 {
 /* The word-built heart from the supplied reference, adapted for this page */
 .reference-heart-wrap {
   position: relative;
-  width: min(92vw, 600px);
+  width: min(88vw, 540px);
   aspect-ratio: 1/0.9;
   margin: 2px auto 0;
   transform-style: preserve-3d;
@@ -807,7 +813,7 @@ h1 {
   place-items: center;
   color: #fff;
   font:
-    950 clamp(34px, 8vw, 66px)/1 "DM Serif Display",
+    950 clamp(30px, 7vw, 60px)/1 "DM Serif Display",
     Georgia,
     serif;
   text-shadow:
