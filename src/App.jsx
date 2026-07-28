@@ -378,6 +378,13 @@ function Letter() {
 export default function App() {
   const [page, setPage] = useState("intro");
   const music = useGentleMusic();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [page]);
   const pages = {
     intro: <Intro next={() => setPage("pin")} />,
     pin: <PinScreen next={() => setPage("gallery")} startMusic={music.start} />,
