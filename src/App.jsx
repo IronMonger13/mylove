@@ -3,14 +3,14 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 // To add your photos: put 8 JPG files in public/photos and name them photo-1.jpg through photo-8.jpg.
 // Write the matching note beside each photo. You only need to edit the text inside the quotes.
 const memories = [
-  { image: '/photos/photo-1.jpg', message: 'Write your note for photo 1 here.' },
-  { image: '/photos/photo-2.jpg', message: 'Write your note for photo 2 here.' },
-  { image: '/photos/photo-3.jpg', message: 'Write your note for photo 3 here.' },
-  { image: '/photos/photo-4.jpg', message: 'Write your note for photo 4 here.' },
-  { image: '/photos/photo-5.jpg', message: 'Write your note for photo 5 here.' },
-  { image: '/photos/photo-6.jpg', message: 'Write your note for photo 6 here.' },
-  { image: '/photos/photo-7.jpg', message: 'Write your note for photo 7 here.' },
-  { image: '/photos/photo-8.jpg', message: 'Write your note for photo 8 here.' },
+  { image: '/photos/photo-1.jpg', message: 'The day we met. I still can\'t believe I am this lucky. ♡' },
+  { image: '/photos/photo-2.jpg', message: 'Every picture with you somehow becomes my favourite.' },
+  { image: '/photos/photo-3.jpg', message: 'You looked so beautiful here that I forgot what I was trying to say.' },
+  { image: '/photos/photo-4.jpg', message: 'A tiny moment, a lifetime memory.' },
+  { image: '/photos/photo-5.jpg', message: 'You smiled and I forgot how to function.' },
+  { image: '/photos/photo-6.jpg', message: 'If I could pause time, I\'d choose this day.' },
+  { image: '/photos/photo-7.jpg', message: 'My camera roll is basically your fan page.' },
+  { image: '/photos/photo-8.jpg', message: 'And this is only the beginning of our story. ❤️' },
 ]
 
 const heartWords = ['I love you', 'love you', 'forever', 'my heart', '<3']
@@ -45,9 +45,9 @@ function Intro({ next }) {
   return <main className="loading-screen">
     <div className="loading-glow" />
     <section className="loading-intro">
-      <h1>Love you.</h1>
+      <h1>Welcome, My love</h1>
       <div className="loading-log">
-        <p>[system] Initializing HEART_PROTOCOL_v2.0...</p><p>[status] Loading memory fragments...</p><p>[fonts] Preloading custom heart font for you...</p><p>[ready] Enter pin to view message...</p>
+        <p>[system] Initializing HEART_PROTOCOL...</p><p>[status] Loading memory fragments...</p><p>[fonts] Preloading custom heart font for you...</p><p>[ready] Enter pin to view message...</p>
       </div>
       <button className="loading-button" onClick={next}>ENTER PIN</button>
     </section>
@@ -69,13 +69,13 @@ function PinScreen({ next, startMusic }) {
     <div className="lock-heart">♥</div><p className="eyebrow">only you know the way in</p><h1>One tiny secret</h1><p>Tap the special four digits, love.</p>
     <div className="pin-dots" aria-label={`${pin.length} of 4 digits entered`}>{[0, 1, 2, 3].map((dot) => <i className={pin[dot] !== undefined ? 'filled' : ''} key={dot} />)}</div>
     <div className="keypad" aria-label="PIN keypad">{[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => <button key={number} onClick={() => press(number)}>{number}</button>)}<span /><button onClick={() => press(0)}>0</button><button className="backspace" aria-label="Delete last number" onClick={() => press('back')}>⌫</button></div>
-    <span className={`pin-message ${error ? 'visible' : ''}`}>Oops… try again, pretty.</span><p className={`pin-hint ${showHint ? 'visible' : ''}`}>a tiny clue: the day our forever started ♡</p>
+    <span className={`pin-message ${error ? 'visible' : ''}`}>Oops… try again, pretty lady.</span><p className={`pin-hint ${showHint ? 'visible' : ''}`}>Hint: the day our forever started ♡</p>
   </div></main>
 }
 
 function Gallery({ next }) {
   const [openMemory, setOpenMemory] = useState(null)
-  return <main className="screen gallery-screen"><Sparkles /><header className="page-heading"><p className="eyebrow">eight little reasons to smile</p><h1>Us, in snapshots</h1><p>Touch a memory to find its secret note ♡</p></header>
+  return <main className="screen gallery-screen"><Sparkles /><header className="page-heading"><p className="eyebrow">Our little reasons to smile</p><h1>Us, in snapshots</h1><p>Touch a memory to find its secret note ♡</p></header>
     <div className="memory-grid">{memories.map((memory, index) => <article className={`memory memory-${index + 1} ${openMemory === index ? 'is-open' : ''}`} tabIndex="0" key={memory.image} onClick={() => setOpenMemory(openMemory === index ? null : index)}><div className="polaroid-paper"><div className="photo-window"><img src={memory.image} alt={`Memory ${index + 1}`} /><i className="photo-glare" /></div><div className="polaroid-note"><p>{memory.message}</p></div></div></article>)}</div>
     <button className="primary-button gallery-next" onClick={next}>a little love letter <b>→</b></button>
   </main>
@@ -86,6 +86,21 @@ function HeartField() {
   return <div className="reference-heart-wrap" aria-label="A beating heart made from love notes">{words.map((point, index) => <span className="reference-heart-word" key={index} style={{ '--x': point.x, '--y': point.y, '--delay': `${point.delay}ms`, '--hue': point.hue, '--light': `${point.light}%`, '--opacity': point.opacity, '--rot': `${point.rot}deg` }}>{heartWords[(index + Math.floor(point.x)) % heartWords.length]}</span>)}<div className="reference-heart-center">Love you.</div></div>
 }
 
-function Letter() { return <main className="screen letter-screen"><Sparkles /><section className="letter-hero"><p className="eyebrow">and this is only the beginning</p><HeartField /><p className="heart-caption">all of this is for you</p></section><article className="love-letter"><span>dear you,</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is where you can write the softest, sweetest things you want her to read.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><em>with all my love,<br />your favourite person ♡</em></article></main> }
+function Letter() { return <main className="screen letter-screen"><Sparkles /><section className="letter-hero"><p className="eyebrow">and this is only the beginning</p><HeartField /><p className="heart-caption">I love you so much</p></section><article className="love-letter"><span>To my pasandida aurat,</span>
+<p>There are so many things I want to tell you that I don't think a single letter could ever hold them all. Still, if I had to choose one place to keep a tiny piece of my heart, it would be here.</p>
+<p>Sometimes I think back to our first date, and I still smile. I know things weren't easy for you that day, and you had every reason to cancel. But you still came. I don't know if you realize how much that meant to me. I was excited before we met, but the moment I saw you, every bit of nervousness disappeared. Looking back now, I don't think I just went on a first date that day. I found my favourite person.</p>
+<p>A random conversation, a walk together, sitting quietly beside each other... none of it ever feels ordinary when it's with you. You have this beautiful way of making every moment feel worth remembering.</p>
+<p>One of my favourite gifts will always be the canvas you made for me. It isn't just because it's beautiful. It's because you spent your time, your effort, and a little piece of your heart making something just for me. Every time I look at it, I don't just see a painting. I see love that was carefully created by the person I love most.</p><p>And then there was that night.</p>
+<p>Standing with you on that terrace, with the city glowing behind us, felt like time had stopped just for us. The lights behind you were beautiful, but I don't think I noticed them much because I couldn't stop looking at you. Asking you to spend forever with me was the best decision I've ever made, and hearing you say yes was the happiest moment of my life. I don't think any view, no matter how breathtaking, will ever compare to the one I had standing beside you that night.</p>
+<p>You make me feel loved in every way possible. Through grand gestures.Through little things. Through your patience, your kindness, your hugs, your laughter, and the way you remember the smallest details about me and take care of me.</p>
+<p>Thank you for being my favourite person. Thank you for being my home. Thank you for being my everything.</p>
+<p> Thank you for choosing me. Thank you for loving me. Thank you for becoming the safest place my heart has ever known.</p>
+<p>No matter how many years pass, I hope we never stop taking silly pictures, making new memories, laughing at nothing, and finding new reasons to fall in love with each other all over again.</p>
+<p>I loved you yesterday.</p>
+<p>I love you today.</p>
+<p>And I know, without a single doubt, I'll love you even more tomorrow.</p>
+<p>Forever yours,</p>
+<em>with all my love,
+  <br />the luckiest man alive ♡</em></article></main> }
 
 export default function App() { const [page, setPage] = useState('intro'); const music = useGentleMusic(); const pages = { intro: <Intro next={() => setPage('pin')} />, pin: <PinScreen next={() => setPage('gallery')} startMusic={music.start} />, gallery: <Gallery next={() => setPage('letter')} />, letter: <Letter /> }; return <><div className="app-shell">{pages[page]}</div>{page !== 'intro' && <SoundToggle playing={music.playing} onToggle={music.toggle} />}</> }
