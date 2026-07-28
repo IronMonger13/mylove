@@ -46,7 +46,7 @@ function Intro({ next }) {
     <section className="loading-intro">
       <h1>Love you.</h1>
       <div className="loading-log">
-        <p>[system] Initializing HEART_PROTOCOL_v2.0...</p><p>[status] Loading memory fragments...</p><p>[fonts] Preloading custom heart font for you...</p><p>[ready] One message is waiting.</p>
+        <p>[system] Initializing HEART_PROTOCOL_v2.0...</p><p>[status] Loading memory fragments...</p><p>[fonts] Preloading custom heart font for you...</p><p>[ready] Enter pin to view message...</p>
       </div>
       <button className="loading-button" onClick={next}>ENTER PIN</button>
     </section>
@@ -54,21 +54,21 @@ function Intro({ next }) {
 }
 
 function PinScreen({ next, startMusic }) {
-  const [pin, setPin] = useState([]); const [error, setError] = useState(false)
+  const [pin, setPin] = useState([]); const [error, setError] = useState(false); const [showHint, setShowHint] = useState(false)
   function press(key) {
     if (key === 'back') { setPin((value) => value.slice(0, -1)); setError(false); return }
     if (pin.length === 4) return
     const nextPin = [...pin, key]; setPin(nextPin); setError(false)
     if (nextPin.length === 4) {
       if (nextPin.join('') === '2407') { startMusic(); setTimeout(next, 280) }
-      else { setError(true); setTimeout(() => setPin([]), 420) }
+      else { setError(true); setShowHint(true); setTimeout(() => setPin([]), 650) }
     }
   }
   return <main className="screen pin-screen"><Sparkles /><div className="pin-card">
     <div className="lock-heart">♥</div><p className="eyebrow">only you know the way in</p><h1>One tiny secret</h1><p>Tap the special four digits, love.</p>
-    <div className="pin-dots" aria-label={`${pin.length} of 4 digits entered`}>{[0, 1, 2, 3].map((dot) => <i className={pin[dot] ? 'filled' : ''} key={dot} />)}</div>
+    <div className="pin-dots" aria-label={`${pin.length} of 4 digits entered`}>{[0, 1, 2, 3].map((dot) => <i className={pin[dot] !== undefined ? 'filled' : ''} key={dot} />)}</div>
     <div className="keypad" aria-label="PIN keypad">{[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => <button key={number} onClick={() => press(number)}>{number}</button>)}<span /><button onClick={() => press(0)}>0</button><button className="backspace" aria-label="Delete last number" onClick={() => press('back')}>⌫</button></div>
-    <span className={`pin-message ${error ? 'visible' : ''}`}>Oops… try again, pretty.</span>
+    <span className={`pin-message ${error ? 'visible' : ''}`}>Oops… try again, pretty.</span><p className={`pin-hint ${showHint ? 'visible' : ''}`}>a tiny clue: the day our forever started ♡</p>
   </div></main>
 }
 
